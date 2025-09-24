@@ -1,0 +1,6 @@
+// Nombre de la aplicación Spring Boot
+spring.application.name=holaMundo
+
+
+//cambiar puerto 
+server.port=7070

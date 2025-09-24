@@ -1,0 +1,5 @@
+package net.itinajero.holaMundo.controller;
+
+public class HomeController {
+
+}

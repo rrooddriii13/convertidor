@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>listado de vacantes</title>
+</head>
+<body>
+	<h1>Listado de vacantes</h1>
+    
+    <table border="1">
+        <thead>
+            <tr>
+            	<th>ID</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Fecha de publicacion</th>
+                <th>Salario</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        	<!-- x cada objeto haga esto  -->
+            <tr th:each="vacante : ${vacantes}">
+                <td th:text="${vacante.nombre}"></td>
+                <td th:text="${vacante.descripcion}"></td>
+                <td th:text="${#dates.format(vacante.fecha, 'dd-MM-yyyy')}"></td>
+                <td th:text="${vacante.salario}"></td>
+            </tr>
+        </tbody>
+        
+    </table>
+</body>
+</html>

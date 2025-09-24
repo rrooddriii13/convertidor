@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;empleos/src/main/resources/templates/home.hmtl&apos; to &apos;home.html&apos;" description="Rename resource &apos;home.hmtl&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/templates/home.hmtl" name="home.html" stamp="1758645640476" updateReferences="true"/>
+</session>

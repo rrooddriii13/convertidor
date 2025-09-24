@@ -1,0 +1,53 @@
+package es.curso.controller;
+
+import java.util.Date;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+import java.util.LinkedList;
+
+@Controller
+public class HomeController {
+	
+	@GetMapping("/listado")
+	public String motrarListado(Model model) {
+		List<String> lista = new LinkedList<String>();
+		//agregar elementos a la lista
+		lista.add("Ingeniero de sistemas");
+		lista.add("Auxiliar de contabilidad");
+		lista.add("Vendedor");
+		lista.add("Arquitecto");
+		
+		//agregar al modelo
+		model.addAttribute("empleos", lista);
+		
+		return "listado";
+	}
+	
+	
+	// Mapeo de la URL raiz tipo get 
+	@GetMapping("/")
+	public String mostarHome(Model model) {
+		// Añadimos un atributo al modelo
+		/*
+		model.addAttribute("mensaje", "Bienvenido a Empleos App");
+		model.addAttribute("fecha", new Date());
+		*/
+		String nombre = "Auxiliar de cotabilidad";
+		Date fechaPub = new Date();
+		double salario = 9000.0;
+		boolean vigente = true;
+		
+		//agregar al modelo
+		model.addAttribute("nombre", nombre);
+		model.addAttribute("fecha", fechaPub);
+		model.addAttribute("salario", salario);
+		model.addAttribute("vigente", vigente);
+
+		// Retornamos la vista home
+		return "home";
+	}
+
+}

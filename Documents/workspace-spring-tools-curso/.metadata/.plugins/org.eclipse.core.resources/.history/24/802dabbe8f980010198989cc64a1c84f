@@ -1,0 +1,5 @@
+spring.application.name=holaMundo
+
+
+//cambiar puerto 
+server.port=7070
