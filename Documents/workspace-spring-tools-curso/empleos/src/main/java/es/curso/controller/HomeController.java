@@ -2,11 +2,13 @@ package es.curso.controller;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import es.curso.model.Vacante;
+import es.curso.service.IVacantesService;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,6 +17,10 @@ import java.util.LinkedList;
 
 @Controller
 public class HomeController {
+	
+	//atributo a nivel de clase
+	@Autowired //inyeccion de dependencias para que spring cree el objeto
+	private IVacantesService serviceVacantes;
 	
 	
 	//mostrar detalles de una vacante
@@ -39,22 +45,26 @@ public class HomeController {
 	@GetMapping("/tabla")
 	public String mostrarTabla(Model model) {
 		//agregar al modelo
-		List<Vacante> lista = getVacantes();
+		//List<Vacante> lista = getVacantes();
+		List<Vacante> lista = serviceVacantes.buscarTodas();
+		
 		model.addAttribute("vacantes", lista);
 		//model.addAttribute("vacantes", getVacantes());
 		
 		return "tabla";
 	}
 	
-	
+	//ya no hace falta el metodo getVacantes por que se usa el servicio
 	/*
 	 * meteodo que regresa una lista de obj tipo vacante
-	 */
+	
 	private List<Vacante> getVacantes(){
 		List<Vacante> lista = new LinkedList<Vacante>();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		
 		try {
+			
+			
 			//crear 3 objetos de tipo vacante
 			Vacante vacante1 = new Vacante();
 			vacante1.setId(1);
@@ -62,6 +72,8 @@ public class HomeController {
 			vacante1.setDescripcion("Se solicita ingeniero para dar diseñar puente peatonal");
 			vacante1.setFecha(sdf.parse("08-02-2024"));
 			vacante1.setSalario(8500.0);
+			vacante1.setDestacado(1);//esta vacante es destacada
+			vacante1.setImagen("logo1.ico");
 			
 			Vacante vacante2 = new Vacante();
 			vacante2.setId(2);
@@ -69,6 +81,8 @@ public class HomeController {
 			vacante2.setDescripcion("Empresa importante solicita auxiliar de contabilidad");
 			vacante2.setFecha(sdf.parse("08-02-2022"));
 			vacante2.setSalario(8000.0);
+			vacante2.setDestacado(0);//esta vacante no es destacada
+			vacante2.setImagen("spain-flag.jpg");
 			
 			Vacante vacante3 = new Vacante();
 			vacante3.setId(3);
@@ -76,18 +90,22 @@ public class HomeController {
 			vacante3.setDescripcion("Se solicita vendedor con experiencia en el area comercial");
 			vacante3.setFecha(sdf.parse("08-02-2019"));
 			vacante3.setSalario(10500.0);
+			vacante3.setDestacado(0);//esta vacante no es destacada
 			
 			//agregar los objetos a la lista
 			lista.add(vacante1);
 			lista.add(vacante2);
 			lista.add(vacante3);
+			
+		
+			
 		}catch(ParseException e) {
 			System.out.println("Error: "+ e.getMessage());
 		}
 		
 		
 		return lista;
-	}
+	}	*/
 	
 	
 	

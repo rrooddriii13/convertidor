@@ -1,0 +1,39 @@
+package es.curso.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/vacantes")
+public class VacantesController {
+	
+	
+	//
+	@GetMapping("/view/{id}")
+	//deccclarar parametro id en el metodo verDetalle
+	//PathVariable para que spring sepa que es un parametro de la ruta
+	public String verDetalle(@PathVariable("id") int idVacante, Model model) {
+		//mostrar valor en la consola 
+		System.out.println("Id vacante: " + idVacante);
+		//agregar al modelo hacer la vista pasarle datos
+		model.addAttribute("idVacante", idVacante);
+		return "vacantes/detalle";
+	}
+	
+	
+	//eliminar 
+	@GetMapping("/delete/{id}")
+	//@GetMapping("/delete")
+	public String eliminar( @PathVariable("id") int idVacante, Model model) {
+		
+		//poara ver si obtienes el id
+		System.out.println("Id vacante a eliminar: " + idVacante);
+		//agregar al modelo hacer la vista pasarle datos
+		model.addAttribute("id", idVacante);
+		return "mensaje";
+	}
+
+}
