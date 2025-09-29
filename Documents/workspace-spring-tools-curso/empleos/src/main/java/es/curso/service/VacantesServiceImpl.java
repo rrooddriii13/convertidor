@@ -32,7 +32,7 @@ public class VacantesServiceImpl implements IVacantesService {
 			vacante1.setFecha(sdf.parse("08-02-2024"));
 			vacante1.setSalario(14000.0);
 			vacante1.setDestacado(1);//esta vacante es destacada
-			vacante1.setImagen("logo1.ico");
+			vacante1.setImagen("logo1.png");
 			
 			Vacante vacante2 = new Vacante();
 			vacante2.setId(2);
@@ -41,7 +41,7 @@ public class VacantesServiceImpl implements IVacantesService {
 			vacante2.setFecha(sdf.parse("08-02-2022"));
 			vacante2.setSalario(8000.0);
 			vacante2.setDestacado(0);//esta vacante no es destacada
-			vacante2.setImagen("spain-flag.jpg");
+			vacante2.setImagen("logo10.png");
 			
 			Vacante vacante3 = new Vacante();
 			vacante3.setId(3);

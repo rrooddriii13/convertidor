@@ -128,11 +128,17 @@ public class HomeController {
 	// Mapeo de la URL raiz tipo get 
 	@GetMapping("/")
 	public String mostarHome(Model model) {
+		
+		List<Vacante> lista = serviceVacantes.buscarTodas();
+		
+		model.addAttribute("vacantes", lista);
+		return "home";
+		
 		// Añadimos un atributo al modelo
 		/*
 		model.addAttribute("mensaje", "Bienvenido a Empleos App");
 		model.addAttribute("fecha", new Date());
-		*/
+		
 		String nombre = "Auxiliar de cotabilidad";
 		Date fechaPub = new Date();
 		double salario = 9000.0;
@@ -145,7 +151,7 @@ public class HomeController {
 		model.addAttribute("vigente", vigente);
 
 		// Retornamos la vista home
-		return "home";
+		return "home";*/
 	}
 
 }
