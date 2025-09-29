@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="es.curso.model.Vacante"/>
-    <fullyQualifiedTypeName name="java.text.ParseException"/>
-</qualifiedTypeNameHistroy>
