@@ -1,0 +1,38 @@
+/* Estilos específicos del componente principal */
+.main-container {
+  @apply min-h-screen flex flex-col;
+}
+
+.content-wrapper {
+  @apply flex-1;
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Efectos hover para tarjetas */
+.hover-lift:hover {
+  @apply transform -translate-y-2 shadow-xl transition-all duration-300;
+}
+
+/* Gradientes personalizados */
+.gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+}

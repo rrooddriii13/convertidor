@@ -1,0 +1,109 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+  <!-- Header -->
+  <app-header></app-header>
+  
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-8">
+    <!-- File Upload Section -->
+    <section class="mb-12" *ngIf="!selectedFile">
+      <app-file-upload (fileSelected)="onFileSelected($event)"></app-file-upload>
+    </section>
+
+    <!-- Loading Indicator -->
+    <div class="text-center py-12" *ngIf="isLoading">
+      <div class="inline-flex items-center space-x-4">
+        <div class="spinner"></div>
+        <div>
+          <h3 class="text-lg font-medium text-gray-900">Procesando archivo...</h3>
+          <p class="text-gray-600 mt-1">Por favor, espere mientras analizamos su archivo SEPA.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error Display -->
+    <div class="mb-8" *ngIf="error">
+      <div class="alert alert-error max-w-2xl mx-auto">
+        <div class="flex items-start">
+          <svg class="flex-shrink-0 h-5 w-5 text-red-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+          </svg>
+          <div class="ml-3">
+            <h4 class="font-medium text-red-800">Error</h4>
+            <p class="mt-1 text-red-700">{{ error }}</p>
+            <button class="btn btn-outline mt-3" (click)="onReset()">
+              Intentar de nuevo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="text-center py-12" *ngIf="inspectionResult && !isLoading">
+      <div class="max-w-2xl mx-auto">
+        <div class="card">
+          <div class="card-body">
+            <div class="flex items-center justify-center mb-4">
+              <svg class="h-12 w-12 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              ¡Archivo procesado exitosamente!
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Su archivo {{ inspectionResult.format }} ha sido analizado correctamente.
+            </p>
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-green-600">
+                  {{ inspectionResult.totalAmount | currency:'EUR':'symbol':'1.2-2':'es-ES' }}
+                </div>
+                <div class="text-sm text-gray-500">Importe Total</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-blue-600">
+                  {{ inspectionResult.numberOfTransactions }}
+                </div>
+                <div class="text-sm text-gray-500">Operaciones</div>
+              </div>
+              <div class="text-center">
+                <div class="text-lg font-bold text-gray-700">
+                  {{ inspectionResult.executionDate }}
+                </div>
+                <div class="text-sm text-gray-500">Fecha Ejecución</div>
+              </div>
+            </div>
+            <button class="btn btn-primary" (click)="onReset()">
+              Cargar otro archivo
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="container mx-auto px-4 text-center">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <h3 class="text-lg font-semibold mb-2">Convertidor SEPA SCT ↔ SDD</h3>
+          <p class="text-gray-400">Proyecto fin de ciclo - Desarrollo de Aplicaciones Web</p>
+        </div>
+        
+        <div class="flex items-center space-x-6">
+          <span class="badge bg-white/10 text-white">ISO 20022</span>
+          <span class="badge bg-white/10 text-white">SEPA</span>
+          <span class="badge bg-white/10 text-white">XSD Validation</span>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 mt-6 pt-6 text-sm text-gray-400">
+        <p>&copy; 2024 Convertidor SEPA. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<router-outlet />

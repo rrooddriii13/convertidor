@@ -1,0 +1,115 @@
+<div class="max-w-4xl mx-auto">
+  <!-- Header Section -->
+  <div class="text-center mb-8">
+    <h2 class="text-3xl font-light text-gray-900 mb-4">
+      Cargar Archivo SEPA
+    </h2>
+    <p class="text-gray-600 text-lg">
+      Seleccione un archivo XML con formato SCT (pain.001) o SDD (pain.008)
+    </p>
+  </div>
+  
+  <!-- Drop Zone -->
+  <div class="relative border-2 border-dashed rounded-2xl p-12 text-center cursor-pointer transition-all duration-300 hover:border-blue-400 hover:bg-blue-50/50"
+       [ngClass]="{
+         'border-blue-500 bg-blue-100/50': isDragOver,
+         'border-gray-300 bg-gray-50': !isDragOver
+       }"
+       (dragover)="onDragOver($event)"
+       (dragleave)="onDragLeave($event)"
+       (drop)="onDrop($event)">
+    
+    <!-- Upload Icon -->
+    <div class="mb-6">
+      <svg class="mx-auto h-16 w-16 text-gray-400" 
+           [class.text-blue-500]="isDragOver"
+           fill="none" 
+           stroke="currentColor" 
+           viewBox="0 0 48 48">
+        <path stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" />
+      </svg>
+    </div>
+    
+    <!-- Upload Text -->
+    <div class="space-y-2">
+      <h3 class="text-xl font-medium text-gray-900">
+        Arrastre su archivo aquí
+      </h3>
+      <p class="text-gray-600">
+        o haga clic para seleccionar
+      </p>
+      
+      <!-- File Requirements -->
+      <div class="mt-6 space-y-1">
+        <p class="text-sm text-gray-500">Formatos soportados: XML (SCT/SDD)</p>
+        <p class="text-sm text-gray-500">Tamaño máximo: 10MB</p>
+      </div>
+    </div>
+    
+    <!-- Hidden File Input -->
+    <input type="file" 
+           accept=".xml" 
+           (change)="onFileInputChange($event)"
+           class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+  </div>
+  
+  <!-- Supported Formats -->
+  <div class="mt-12">
+    <h4 class="text-lg font-medium text-gray-900 mb-6 text-center">
+      Formatos Soportados
+    </h4>
+    
+    <div class="grid md:grid-cols-2 gap-6">
+      <!-- SCT Format -->
+      <div class="card hover:shadow-xl transition-shadow duration-300">
+        <div class="card-body">
+          <div class="flex items-center space-x-4">
+            <div class="flex-shrink-0">
+              <span class="badge-sct text-lg font-bold px-4 py-2">
+                SCT
+              </span>
+            </div>
+            <div>
+              <h5 class="font-semibold text-gray-900 mb-1">
+                SEPA Credit Transfer (pain.001)
+              </h5>
+              <p class="text-sm text-gray-600">
+                Transferencias y pagos
+              </p>
+              <p class="text-xs text-gray-500 mt-1">
+                ISO 20022 - pain.001.001.09
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- SDD Format -->
+      <div class="card hover:shadow-xl transition-shadow duration-300">
+        <div class="card-body">
+          <div class="flex items-center space-x-4">
+            <div class="flex-shrink-0">
+              <span class="badge-sdd text-lg font-bold px-4 py-2">
+                SDD
+              </span>
+            </div>
+            <div>
+              <h5 class="font-semibold text-gray-900 mb-1">
+                SEPA Direct Debit (pain.008)
+              </h5>
+              <p class="text-sm text-gray-600">
+                Adeudos y domiciliaciones
+              </p>
+              <p class="text-xs text-gray-500 mt-1">
+                ISO 20022 - pain.008.001.08
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
